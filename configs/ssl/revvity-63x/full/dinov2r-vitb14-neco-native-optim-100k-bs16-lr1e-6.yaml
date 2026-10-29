@@ -1,0 +1,62 @@
+# Common image-budget benchmark; full submission requires confirmation.
+# Native optimizer/augmentation recipe, adapted dataset and 100k horizon.
+experiment:
+  model_name: dinov2r-vitb14-neco-native-optim-100k-bs16-lr1e-6
+  protocol: revvity63x-neco-native-100k-v1
+  comparison_basis: native-method-recipe-common-image-budget
+  upstream_revision: 393216026b4d045e2e0b803f70a7d89d9a58937e
+  source_config: experiments/configs/models/base/neco_dinov2r.yml
+  hyperparameter_selection: published-defaults-no-microscopy-search
+  checkpoint_selection: final-ema-at-100000-updates
+model:
+  backbone: dinov2r
+  patch_size: 14
+  registers: 4
+  precision: fp32
+  pretrained: /gpfs/space/projects/PerkinElmer/dino_ssl/pretrained/dinov2/vitb14-reg4-lvd142m/7764ea0f912e53c92e82eb78a2a1631e92725fc8/model.pth
+  pretrained_sha256: 73182a088cf94833c94b1666d1c99e02fe87e2007bff57b564fb6206e25dba71
+  projection_dim: 256
+  projection_hidden_dim: 2048
+  projection_layers: 3
+  queue_length: 8192
+  roi_size: 7
+  steepness: 100
+data:
+  name: REVVITY
+  version: well_v2_80_10_10_seed0
+  manifest: /gpfs/space/projects/PerkinElmer/dino_ssl/datasets/revvity-63x/splits/well_v2_80_10_10_seed0/train/manifest.csv
+  manifest_sha256: 6b210ae92ffa759ae1c21b136fbad98cc59e4f8b992c01364c61d9f4fad83848
+  expected_fields: 8938
+  size_crops: [518, 98]
+  nmb_crops: [2, 4]
+  min_scale_crops: [0.25, 0.05]
+  max_scale_crops: [1.0, 0.25]
+  min_intersection: 0.01
+  jitter_strength: 1.0
+  blur_strength: 1.0
+train:
+  max_steps: 100000
+  batch_size: 16
+  seed: 0
+  num_workers: 8
+optim:
+  lr_backbone: 0.000001
+  lr_heads: 0.0001
+  min_lr: 0.0
+  warmup_steps: 0
+  weight_decay: 0.04
+  weight_decay_end: 0.5
+  momentum: 0.9995
+  momentum_end: 1.0
+  betas: [0.9, 0.999]
+  clip_grad: null
+checkpointing:
+  period: 5000
+  export_period: 5000
+logging:
+  interval: 10
+  wandb:
+    mode: online
+    project: dino-ssl
+    entity: null
+    group: revvity63x-neco-100k

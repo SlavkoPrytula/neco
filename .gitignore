@@ -1,4 +1,13 @@
 # Byte-compiled / optimized / DLL files
+/runs
+/outputs/*
+!/outputs/slurm/
+/outputs/slurm/*
+!/outputs/slurm/.gitkeep
+/wandb/
+*.pth
+*.pt
+*.safetensors
 __pycache__/
 *.py[cod]
 *$py.class
