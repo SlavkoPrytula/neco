@@ -1,5 +1,9 @@
 #  [`Near, far: Patch-ordering enhances vision foundation models' scene understanding`](https://arxiv.org/abs/2408.11054)
 
+Local microscopy integration: [training and validation guide](scripts/slurm/README.md),
+[isolated environment](environments/README.md). The upstream method source is
+preserved; shared research/evaluation coordination lives in `../dinov3`.
+
 *[Valentinos Pariza*](https://vpariza.github.io), [Mohammadreza Salehi*](https://smsd75.github.io),[Gertjan J. Burghouts](https://gertjanburghouts.github.io), [Francesco Locatello](https://www.francescolocatello.com/), [Yuki M. Asano](https://yukimasano.github.io)* 
 
 ### [ICLR 2025](https://openreview.net/forum?id=Qro97zWC29)
@@ -323,7 +327,6 @@ All our code is MIT license with the exception of DINOv2 related code that follo
 DINOv2 has an Apache 2 license [DINOv2](https://github.com/facebookresearch/dinov2/blob/main/LICENSE).
 
 #### Note: Our repository is developed by adopting and adapting multiple parts of the [Leopart](https://github.com/MkuuWaUjinga/leopart) model, as well as parts from other works like DINOv2, DINO, R-CNN, ...
-
 
 
 
